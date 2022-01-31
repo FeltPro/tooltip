@@ -21,12 +21,43 @@ body {
 
 .avatar::before,
 .avatar::after {
+    --scale: 0;
+    --arrow-size: 15px;
+    --tooltip-color: rgb(224, 209, 209);
+
     position: absolute;
     content: "";
     top: -.25rem;
     left: 50%;
-    height: 25px;
-    width: 25px;
-    background: black;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+    transition: 950ms;
+    transform-origin: bottom center;
+}
+
+.avatar::before {
+    --translate-y: calc(-100% - var(--arrow-size));
+
+    content: attr(data-tooltip);
+    color: black;
+    font-family:monospace;
+    font-size: 2.5rem;
+    padding: .5rem;
+    width: max-content;
+    max-width: 100%;
+    background: var(--tooltip-color);
+    border-radius: 0.3rem;
+    text-align: center;
+}
+
+.avatar:hover::before,
+.avatar:hover::after {
+    --scale: 1;
+}
+
+.avatar::after {
+    --translate-y: calc(-1 * var(--arrow-size));
+    content: "";
+    border: var(--arrow-size) solid transparent;
+    border-top-color: var(--tooltip-color);
+    transform-origin: top center;
 }
