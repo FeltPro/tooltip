@@ -1,0 +1,32 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.avatar {
+    width: 400px;
+    height: 400px;
+    background-image: url('https://metro.co.uk/wp-content/uploads/2020/02/PRI_142406335-e1589297035275.jpg?quality=90&strip=all');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.avatar::before,
+.avatar::after {
+    position: absolute;
+    content: "";
+    top: -.25rem;
+    left: 50%;
+    height: 25px;
+    width: 25px;
+    background: black;
+    transform: translateX(-50%);
+}
